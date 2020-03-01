@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="src/styles/index.scss" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tooltip Component</title>
+  </head>
+  <body>
+    <main class="wrapper">
+      <section class="object__wrapper">
+        <div class="object__container">
+          <div class="object">A</div>
+        </div>
+        <div class="object__container">
+          <div class="object">B</div>
+        </div>
+        <div class="object__container">
+          <div class="object">C</div>
+        </div>
+      </section>
+      <section>
+        <div class="config-panel">
+          <form class="config-panel__container" data-role="color-panel">
+            <span class="config-panel__title">COLOR</span>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="primary"
+                name="color-pick"
+                class="config-panel__radio"
+                checked
+              />
+              <span class="config-panel__radio--custom"></span>
+              <label for="primary" class="config-panel__label">primary</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="secondary"
+                name="color-pick"
+                class="config-panel__radio"
+              />
+              <label for="secondary" class="config-panel__label"
+                >secondary</label
+              >
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="dark"
+                name="color-pick"
+                class="config-panel__radio"
+              />
+              <label for="dark" class="config-panel__label">dark</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="light"
+                name="color-pick"
+                class="config-panel__radio"
+              />
+              <label for="light" class="config-panel__label">light</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="accent"
+                name="color-pick"
+                class="config-panel__radio"
+              />
+              <label for="accent" class="config-panel__label">accent</label>
+            </div>
+          </form>
+          <form class="config-panel__container" data-role="position-panel">
+            <span class="config-panel__title">POSITION</span>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="top"
+                name="position-pick"
+                class="config-panel__radio"
+              />
+              <label for="top" class="config-panel__label">top</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="bottom"
+                name="position-pick"
+                class="config-panel__radio"
+                checked
+              />
+              <label for="top" class="config-panel__label">bottom</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="left"
+                name="position-pick"
+                class="config-panel__radio"
+              />
+              <label for="top" class="config-panel__label">left</label>
+            </div>
+            <div class="flex-direction-row flex-justify-content-start">
+              <input
+                type="radio"
+                value="right"
+                name="position-pick"
+                class="config-panel__radio"
+              />
+              <label for="top" class="config-panel__label">right </label>
+            </div>
+          </form>
+          <form class="config-panel__container" data-role="text-panel">
+            <span class="config-panel__title">TEXT</span>
+            <div
+              class="flex flex-direction-row flex-justify-content-space-b margin-bottom"
+            >
+              Color HEX<input
+                type="text"
+                value="#FFFFFF"
+                class="border-radius-8 config-panel__input"
+              />
+            </div>
+            <div
+              class="flex flex-direction-row flex-justify-content-space-b margin-bottom"
+            >
+              Max length<input
+                type="number"
+                value="100"
+                class="border-radius-8 config-panel__input"
+              />
+            </div>
+            <textarea
+              placeholder="dowolny tekst X znaków"
+              class="border-radius-8"
+              data-role="tooltip-input"
+            ></textarea>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="src/scripts/tooltip.js"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+.config-panel {
+  border: 2px black solid;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+
+  &__container {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 8px;
+    position: relative;
+  }
+
+  &__input {
+    width: 30%;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  // &__radio {
+  //   // margin-right: 16px;
+  //   // &:checked {
+  //   //   background-color: green;
+  //   // }
+  //   position: absolute;
+  //   opacity: 0;
+  //   cursor: pointer;
+  //   height: 0;
+  //   width: 0;
+
+  //   &--custom {
+  //     position: absolute;
+  //     top: 50px;
+  //     left: 0;
+  //     height: 25px;
+  //     width: 25px;
+  //     background-color: #eee;
+  //     border-radius: 50%;
+  //     &:checked {
+  //       display: block;
+  //       background-color: green;
+  //     }
+  //   }
+  // } TODO: CREATE CUSTOM RADIO BUTTON
+
+  &__label {
+    margin-left: 32px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    align-self: center;
+    font-weight: bold;
+  }
+}

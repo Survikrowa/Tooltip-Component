@@ -1,0 +1,32 @@
+.object {
+  padding: 24px 32px;
+  background-color: rgb(107, 0, 128);
+  max-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  cursor: pointer;
+  @media (min-width: $mediumDevice) {
+    padding: 42px 48px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 16rem;
+    @media (min-width: $mediumDevice) {
+      flex-direction: row;
+      width: 50%;
+    }
+  }
+
+  &__container {
+    position: relative;
+  }
+}
