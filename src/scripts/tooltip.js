@@ -1,13 +1,25 @@
 import { renderTooltip } from "./renderTooltip";
+import debounce from "lodash/debounce";
+
+const DEFAULT_TOOLTIP_POSITION = "bottom";
+const DEFAULT_TOOLTIP_COLOR = "primary";
+const DEFAULT_TOOLTIP_TEXT_COLOR = "#FFFFFF";
+
+const hexColorValidationRegEx = /^#([0-9A-F]{3}){1,2}$/i;
 
 const colorPanel = document.querySelector('[data-role="color-panel"]');
 const objectWrapper = document.querySelector(".object__wrapper");
-const htmlObjects = objectWrapper.querySelectorAll(".object");
 const positionPanel = document.querySelector('[data-role="position-panel"]');
 const textPanel = document.querySelector('[data-role="text-panel"]');
+const tooltipTextInput = textPanel.querySelector('[data-role="tooltip-input"]');
+const objects = objectWrapper.querySelectorAll(".object");
+let objectsArray = Array.from(objects);
 
-const getObjectsContainer = () => {
-  return document.querySelectorAll(".object__container");
+const tooltipOptions = {
+  color: DEFAULT_TOOLTIP_COLOR,
+  position: DEFAULT_TOOLTIP_POSITION,
+  text: "",
+  textColor: DEFAULT_TOOLTIP_TEXT_COLOR
 };
 
 const getColor = () => {
@@ -19,58 +31,103 @@ const getPosition = () => {
     .value;
 };
 
-const getTooltipText = () => {
+const getTooltipTextInputValue = () => {
   return textPanel.querySelector('[data-role="tooltip-input"]').value;
+};
+
+const getTooltipTextColor = () => {
+  return textPanel.querySelector('[data-role="tooltip-text-color"]').value;
+};
+
+const getTooltipTextLength = () => {
+  return textPanel.querySelector('[data-role="tooltip-input"]').value.length;
 };
 
 const getTooltip = () => {
   return objectWrapper.querySelector(".tooltip");
 };
 
-const deleteTooltip = () => {
-  const objectsContainer = getObjectsContainer();
-  objectsContainer.forEach(objectContainer => {
-    const tooltip = getTooltip();
-    if (tooltip) {
-      tooltip.remove();
-    }
-  });
+const deleteTooltip = element => {
+  if (element) {
+    element.remove();
+  }
 };
 
-const tooltipColor = getColor();
-const tooltipPosition = getPosition();
-const tooltipText = getTooltipText();
-
-const tooltipOptions = {
-  color: tooltipColor,
-  position: tooltipPosition,
-  text: tooltipText
+const isProperTextColor = textColor => {
+  return hexColorValidationRegEx.test(textColor);
 };
 
-let { color, position, text } = tooltipOptions;
+const getMaxTextLength = () => {
+  return textPanel.querySelector('[data-role="text-length"]').value;
+};
 
-console.log(color, position, text);
+const checkTextLength = tooltipTextInput => {
+  const maxTextLength = getMaxTextLength();
+  const tooltipTextLength = getTooltipTextLength();
+  if (tooltipTextLength > maxTextLength) {
+    return tooltipTextInput.slice(0, maxTextLength);
+  } else {
+    return tooltipTextInput;
+  }
+};
+
+let { color, position, text, textColor } = tooltipOptions;
+
+let currentElement = 0;
+
+const tooltipHandler = (element, color, position, text, textColor) => {
+  const tooltip = getTooltip();
+  if (isProperTextColor(textColor)) {
+    element.insertAdjacentHTML(
+      "beforebegin",
+      renderTooltip(color, position, text, textColor)
+    );
+    deleteTooltip(tooltip);
+  } else {
+    element.insertAdjacentHTML(
+      "beforebegin",
+      renderTooltip(color, position, text, DEFAULT_TOOLTIP_TEXT_COLOR)
+    );
+    deleteTooltip(tooltip);
+  }
+};
+
+const getCurrentElementInArray = () => {
+  return objectsArray[currentElement];
+};
+
+objectWrapper.addEventListener("click", e => {
+  if (e.target.parentNode.classList.contains("object__container")) {
+    currentElement = objectsArray.indexOf(e.target);
+    tooltipHandler(
+      getCurrentElementInArray(),
+      color,
+      position,
+      text,
+      getTooltipTextColor()
+    );
+  }
+});
+
 colorPanel.addEventListener("change", () => {
   color = getColor();
-  tooltipHandler(htmlObject, color, position, text);
+  tooltipHandler(getCurrentElementInArray(), color, position, text, textColor);
 });
 positionPanel.addEventListener("change", () => {
   position = getPosition();
+  tooltipHandler(getCurrentElementInArray(), color, position, text, textColor);
 });
-textPanel.addEventListener("change", () => {
-  text = getTooltipText();
-});
-
-const tooltipHandler = (element, color, position, text) => {
-  deleteTooltip();
-  element.insertAdjacentHTML(
-    "afterbegin",
-    renderTooltip(color, position, text)
-  );
-};
-
-htmlObjects.forEach(htmlObject => {
-  htmlObject.addEventListener("click", () => {
-    tooltipHandler(htmlObject, color, position, text);
-  });
-});
+textPanel.addEventListener(
+  "input",
+  debounce(() => {
+    const tooltipInputValue = getTooltipTextInputValue();
+    text = checkTextLength(tooltipInputValue);
+    tooltipHandler(
+      getCurrentElementInArray(),
+      color,
+      position,
+      text,
+      getTooltipTextColor()
+    );
+  }, 1000)
+);

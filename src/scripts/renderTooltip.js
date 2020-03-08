@@ -1,5 +1,5 @@
-export const renderTooltip = (color, position, text) => {
+export const renderTooltip = (color, position, text, textColor) => {
   return `<div class="tooltip ${color} ${position}">
-        <span>${text}</span>
+        <span style="color: ${textColor};">${text}</span>
     </div>`;
 };

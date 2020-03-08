@@ -4,7 +4,8 @@
   position: absolute;
   border-radius: 4px;
   padding: 0.5em;
-  color: white;
+  z-index: 10000;
+  word-break: break-word;
 }
 
 .primary {
