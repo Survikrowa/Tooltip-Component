@@ -1,0 +1,49 @@
+.config-panel {
+  border: 2px black solid;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+
+  &__container {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 8px;
+    position: relative;
+    border: none;
+  }
+
+  &__input {
+    width: 30%;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__textarea {
+    border-radius: 8px;
+  }
+
+  &__form {
+    display: flex;
+  }
+
+  &__label {
+    margin-left: 32px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    align-self: center;
+    font-weight: bold;
+  }
+}
