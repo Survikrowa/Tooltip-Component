@@ -47,6 +47,7 @@
 
 .right {
   left: calc(100% + 15px);
+  top: calc(100% - 95px);
 }
 
 .right::before {
@@ -64,6 +65,7 @@
 
 .top {
   bottom: calc(100% + 15px);
+  right: calc(100% - 110px);
 }
 
 .top::before {
@@ -73,6 +75,7 @@
 
 .bottom {
   top: calc(100% + 15px);
+  right: calc(100% - 110px);
 }
 
 .bottom::before {
@@ -82,6 +85,7 @@
 
 .left {
   right: calc(100% + 15px);
+  top: calc(100% - 95px);
 }
 
 .left::before {

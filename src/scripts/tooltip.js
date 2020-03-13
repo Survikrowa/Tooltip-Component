@@ -7,11 +7,10 @@ const DEFAULT_TOOLTIP_TEXT_COLOR = "#FFFFFF";
 
 const hexColorValidationRegEx = /^#([0-9A-F]{3}){1,2}$/i;
 
-const colorPanel = document.querySelector('[data-role="color-panel"]');
+const colorPanel = document.querySelector(".color-panel");
 const objectWrapper = document.querySelector(".object__wrapper");
-const positionPanel = document.querySelector('[data-role="position-panel"]');
-const textPanel = document.querySelector('[data-role="text-panel"]');
-const tooltipTextInput = textPanel.querySelector('[data-role="tooltip-input"]');
+const positionPanel = document.querySelector(".position-panel");
+const textPanel = document.querySelector(".text-panel");
 const objects = objectWrapper.querySelectorAll(".object");
 let objectsArray = Array.from(objects);
 
